@@ -1,0 +1,198 @@
+{% if proofs %}
+<div class="row border rounded py-3 my-3">
+    <div id="carouselDocuments" class="carousel slide my-2" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for proof in proofs %}
+            {% if proof.document %}
+            <li data-target="#carouselDocuments" data-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}"></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for proof in proofs %}
+            {% if proof.document %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img class="d-block w-100" src="{{ proof.document.url }}" alt="{{ proof.document.name }}">
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselDocuments" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselDocuments" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+        </a>
+    </div>
+</div>
+{% endif %}
+
+
+
+{% if proofs %}
+<div class="row border rounded py-3 my-3">
+    <div id="carouselVideos" class="carousel slide my-2" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for proof in proofs %}
+            {% if proof.video %}
+            <li data-target="#carouselVideos" data-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}"></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for proof in proofs %}
+            {% if proof.video %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <video class="d-block w-100" controls>
+                    <source src="{{ proof.video.url }}">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselVideos" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselVideos" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+        </a>
+    </div>
+</div>
+{% endif %}
+
+{% if proofs %}
+<div class="row border rounded py-3 my-3">
+    <div id="carouselAudios" class="carousel slide my-2" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for proof in proofs %}
+            {% if proof.audio %}
+            <li data-target="#carouselAudios" data-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}"></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for proof in proofs %}
+            {% if proof.audio %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <audio class="d-block w-100" controls>
+                    <source src="{{ proof.audio.url }}" type="audio/mpeg">
+                    Votre navigateur ne supporte pas l'audio.
+                </audio>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselAudios" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselAudios" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+        </a>
+    </div>
+</div>
+{% endif %}
+
+
+{% if proofs %}
+        <div class="row border rounded py-3">
+            <div id="carouselImages" class="carousel slide my-2" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for proof in proofs %}
+                    {% if proof.image %}
+                    <li data-target="#carouselImages" data-slide-to="{{ forloop.counter0 }}"
+                        class="{% if forloop.first %}active{% endif %}"></li>
+                    {% endif %}
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for proof in proofs %}
+                    {% if proof.image %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img class="d-block w-100" src="{{proof.image.url}}" alt="{{ image.name }}">
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselImages" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Précédent</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselImages" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Suivant</span>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% block content %}
+
+<div class="mx-auto px-4">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mx-5 px-2 py-3">
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_full_name">Nom complet</label>
+                </div>
+                <div class="col">
+                    {{ form.full_name }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                    <label class="text-end" for="id_phone">Telephone</label>
+                    {{ form.phone }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_email">Email </label>
+                </div>
+                <div class="col">
+                    {{ form.email }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_status">Statut</label>
+                </div>
+                <div class="col">
+                    {{ form.status }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_password1">Mot de passe</label>
+                </div>
+                <div class="col">
+                    {{ form.password1 }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_password2">Confirmer</label>
+                </div>
+                <div class="col">
+                    {{ form.password2 }}
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Créer l'utilisateur</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

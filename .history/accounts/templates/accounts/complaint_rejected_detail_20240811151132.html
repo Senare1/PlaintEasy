@@ -1,0 +1,129 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+<style>
+    .custom-tooltip .tooltip-inner {
+    background-color: aquamarine; 
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    padding: 10px; 
+    text-align: center; 
+}
+
+.custom-tooltip .tooltip-arrow {
+    border-top-color: white; 
+}
+
+
+
+</style>
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="text-center">Détail de la plainte de {{ complainant }}</h1>
+
+    <div class="row mx-auto my-2 p-2 bg-light rounded">
+        <h4 class="text-center">Motif de la plainte</h4>
+        <div class="row rounded text-uppercase bg-transparent">
+            {{ complaint.motif }}
+        </div>
+    </div>
+
+    <div class="row mx-auto my-2 p-2 bg-light rounded">
+        <h4 class="text-center">Description de la plainte</h4>
+        <div class="row rounded p-2">
+            {{ complaint.description }}
+        </div>
+    </div>
+
+    <div class="row mx-auto my-2 p-2 bg-light rounded">
+        <h4 class="text-center">Statut de la plainte </h4>
+        <p class="text-info text-uppercase">{{ complaint.get_status_display}}</p>
+    </div>
+
+    <div class="row mx-auto my-2 p-2 bg-light rounded">
+        <h4 class="text-center">Date d'enregistrement de la plainte</h4>
+        <p class="text-info text-uppercase">Il y'a {{ complaint.incident_registered | timesince }}</p>
+    </div>
+
+    <div class="row mx-auto my-2 p-2 bg-light rounded">
+        <h4 class="text-center">Date de l'incident</h4>
+        <p class="text-info text-uppercase">Soumis en {{ complaint.incident_date | upper }}</p>
+    </div>
+    
+    <div class="row  mx-auto py-3 my-3">
+        <h4 class="text-center">Preuves de la plainte</h4>
+        {% if proofs %}
+        <div id="carouselExampleIndicators" class="carousel slide my-3" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                {% for proof in proofs %}
+                    {% if proof.image %}
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="carousel-inner">
+                {% for proof in proofs %}
+                    {% if proof.image %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ proof.image.url }}" class="d-block w-100 h-50" alt="{{ proof.image.name }}">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Precedent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
+        </div>
+        {% endif %}
+
+        {% if proofs %}
+        <div id="carouselExampleIndicatorsVideo" class="carousel slide my-3" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for proof in proofs %}
+                {% if proof.video %}
+                    <button type="button" data-bs-target="#carouselExampleIndicatorsVideo" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="carousel-inner">
+            {% for proof in proofs %}
+                {% if proof.video %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <video class="d-block w-100" controls>
+                        <source src="{{ proof.video.url }}" type="video/mp4">
+                        Votre navigateur ne supporte pas la balise vidéo.
+                    </video>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicatorsVideo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Precedent</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicatorsVideo" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
+    </div>
+{% endif %}
+    
+
+
+    {% if not proofs %}
+        <div class="row rounded-pill  w-25 p-3 text-center text-danger bg-light">
+            Pas de preuves fournises
+        </div>
+    {% endif %}
+    </div>
+
+{% endblock %}

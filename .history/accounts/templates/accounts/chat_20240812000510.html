@@ -1,0 +1,23 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} ADmin dashboard {% endblock %}
+{% block content %}
+
+<div class="row mx-auto my-5">
+    {% if responses %}
+      {% for response in responses %}
+        <div class="col mx-5 border rounded mt-5 py-3" id="response_{{forloop.count0}}">
+          <p>Plainte du {{ response.complaint.incident_registered }}</p>
+          <div class="ms-2">{{ response.message }}
+            <p>Reçu le {{ response.date_receiving }}</p>
+          </div>
+          <p>Soumise le {{ response.complaint.incident_date }}</p>
+          <div class="d-flex justify-content-end"> <a href="{% url 'delete_response' id=response.id %}" class="btn btn-primary rounded-pill">Supprimer</a></div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  {% endblock %}

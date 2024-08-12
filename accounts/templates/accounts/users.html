@@ -1,0 +1,89 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} ADmin dashboard {% endblock %}
+{% block content %}
+
+<div class="container-fluid px-4">
+    <div class="row g-3 my-2">
+        <div class="col-md-3">
+            <a href="{% url 'all_users' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_total }}</h3>
+                        <p class="fs-5">Tous</p>
+                    </div>
+                    <i class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'all_customers' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_customer }}</h3>
+                        <p class="fs-5">Clients</p>
+                    </div>
+                    <i
+                        class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'all_citozens' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_citizen }}</h3>
+                        <p class="fs-5">Citoyens</p>
+                    </div>
+                    <i class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'signup_user' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">++</h3>
+                        <p class="fs-5">Ajouter</p>
+                    </div>
+                    <i class="fas fa-plus fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <h3 class="fs-4 mb-3 text-center">Utilisateurs nouvellement ajoutés</h3>
+        <div class="col table-responsive d-lg-overflow-scroll-none">
+            <table class="table bg-white rounded shadow-sm  table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telephone</th>
+                        <th scope="col">Statut</th>
+                        <th scope="col">Nom complet</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <th scope="row">{{ user.email }}</th>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.status }}</td>
+                        <td>{{ user.full_name }}</td>
+                        <td><p> <a href="{% url 'user_detail' id=user.id %}" class="btn btn-primary rounded-pill">Voir</a></p></td>
+                    </tr>
+                    {% endfor %}   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

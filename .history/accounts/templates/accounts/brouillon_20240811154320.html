@@ -1,0 +1,753 @@
+{% if proofs %}
+<div class="row border rounded py-3 my-3">
+    <div id="carouselDocuments" class="carousel slide my-2" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for proof in proofs %}
+            {% if proof.document %}
+            <li data-target="#carouselDocuments" data-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}"></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for proof in proofs %}
+            {% if proof.document %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img class="d-block w-100" src="{{ proof.document.url }}" alt="{{ proof.document.name }}">
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselDocuments" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselDocuments" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+        </a>
+    </div>
+</div>
+{% endif %}
+
+
+
+{% if proofs %}
+<div class="row border rounded py-3 my-3">
+    <div id="carouselVideos" class="carousel slide my-2" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for proof in proofs %}
+            {% if proof.video %}
+            <li data-target="#carouselVideos" data-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}"></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for proof in proofs %}
+            {% if proof.video %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <video class="d-block w-100" controls>
+                    <source src="{{ proof.video.url }}">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselVideos" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselVideos" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+        </a>
+    </div>
+</div>
+{% endif %}
+
+{% if proofs %}
+<div class="row border rounded py-3 my-3">
+    <div id="carouselAudios" class="carousel slide my-2" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for proof in proofs %}
+            {% if proof.audio %}
+            <li data-target="#carouselAudios" data-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}"></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for proof in proofs %}
+            {% if proof.audio %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <audio class="d-block w-100" controls>
+                    <source src="{{ proof.audio.url }}" type="audio/mpeg">
+                    Votre navigateur ne supporte pas l'audio.
+                </audio>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselAudios" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselAudios" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Suivant</span>
+        </a>
+    </div>
+</div>
+{% endif %}
+
+
+{% if proofs %}
+        <div class="row border rounded py-3">
+            <div id="carouselImages" class="carousel slide my-2" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    {% for proof in proofs %}
+                    {% if proof.image %}
+                    <li data-target="#carouselImages" data-slide-to="{{ forloop.counter0 }}"
+                        class="{% if forloop.first %}active{% endif %}"></li>
+                    {% endif %}
+                    {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for proof in proofs %}
+                    {% if proof.image %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img class="d-block w-100" src="{{proof.image.url}}" alt="{{ image.name }}">
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselImages" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Précédent</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselImages" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Suivant</span>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% block content %}
+
+<div class="mx-auto px-4">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mx-5 px-2 py-3">
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_full_name">Nom complet</label>
+                </div>
+                <div class="col">
+                    {{ form.full_name }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                    <label class="text-end" for="id_phone">Telephone</label>
+                    {{ form.phone }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_email">Email </label>
+                </div>
+                <div class="col">
+                    {{ form.email }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_status">Statut</label>
+                </div>
+                <div class="col">
+                    {{ form.status }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_password1">Mot de passe</label>
+                </div>
+                <div class="col">
+                    {{ form.password1 }}
+                </div>
+            </div>
+            <div class="row my-2 mx-auto">
+                <div class="col justify-content-end">
+                    <label class="text-end" for="id_password2">Confirmer</label>
+                </div>
+                <div class="col">
+                    {{ form.password2 }}
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Créer l'utilisateur</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="container m-auto">
+        <h3 class="text-center py-3" style="color: #009d63;">
+            Créer mon compte sur PlaintEase</h3>
+            <div class="row mx-auto">
+                <div class="row border mx-auto rounded p-3 w-50" style="background-color: azure;">
+                    
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3">
+                            <label for="id_full_name">Nom complet</label> 
+                        </div>
+                        <div class="col-12 col-md-8 mb-3">
+                            {{ form.full_name }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3">
+                            <label for="id_email">Email</label> 
+                        </div>
+                        <div class="col-12 col-md-8 mb-3">
+                            {{ form.email }}
+                        </div>
+                    </div>
+
+                    {% if form.errors %}
+                    <div class="row mt-3">
+                        <div class="col-12 alert alert-info alert-dismissible fade show mb-3 rounded-pill w-75" style="color: red;" role="alert">
+                            {{ form.errors.phone }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3">
+                            <label for="id_phone">Telephone</label> 
+                        </div>
+                        <div class="col-12 col-md-8 mb-3">
+                            {{ form.phone }}
+                        </div>
+                    </div>
+
+                    {% if form.errors %}
+                    <div class="row mt-3">
+                        <div class="col-12 alert alert-info alert-dismissible fade show mb-3 rounded-pill w-75" style="color: red;" role="alert">
+                            {{ form.errors.phone }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3">
+                            <label for="id_address">Adrresse</label> 
+                        </div>
+                        <div class="col-12 col-md-8 mb-3">
+                            {{ form.address }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3">
+                            <label for="id_status">Votre statut</label> 
+                        </div>
+                        <div class="col-12 col-md-8 mb-3">
+                            {{ form.status }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3">
+                            <label for="id_password1">Mot de passe</label> 
+                        </div>
+                        <div class="col-12 col-md-8 mb-3">
+                            {{ form.password1 }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-4 mb-3">
+                            <label for="id_password2">Confirmer</label> 
+                        </div>
+                        <div class="col-12 col-md-8 mb-3">
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+
+                    <div class="row mt-2 text-center">
+                        <p>                            
+                            Déjà un compte, <a class="btn btn-white text-decoration-none" href="{% url 'login_email' %}">Se connecter</a></p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col text-center my-1">
+                            <button type="reset" class="btn btn-danger">Annuler</button>
+                        </div>
+                        <div class="col text-center my-1">
+                            <button type="submit" class="btn btn-success">S'incrire</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to ClariSolve</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        .a-link{
+            margin: 0 15px;
+        }
+        a.btn:hover{
+            color:khaki
+        }
+        a.btn{
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container m-auto">
+            <h3 class="text-center py-3" style="color: #009d63;">
+                <i class="fa fa-balance-scale"></i> Bienvenue à ClariSolve</h3>
+                <div class="row mx-auto ">
+                    <div class="a-link text-center">
+                        Avec  
+                        <a href="{% url 'login_email' %}" class="text-decoration-none">
+                            <i class="fa fa-envelope mx-3 py-2"></i>
+                        </a> | 
+                        <a href="{% url 'login_phone' %}" class="text-decoration-none">
+                            <i class="fa fa-phone-alt mx-3 py-2"></i>
+                        </a>
+                    </div>
+                    <div class="row border mx-auto rounded p-3 w-50" style="background-color: azure;">
+                        <div class="col-12 mb-3">
+                            {{ form.phone }} 
+                        </div>
+                        <div class="col-12 mb-3">
+                            {{ form.password }}
+                        </div>
+                        {% if form.non_field_errors %}
+                        <div class="row mt-3">
+                            <div class="col-12 alert alert-info alert-dismissible fade show mb-3 rounded-pill w-75" style="color: red;" role="alert">
+                                {{ form.non_field_errors }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                        {% endif %}
+
+
+                        <div class="row my-2 text-center">
+                            <div class="col">
+                                <a class="btn btn-white py-1 text-decoration-none" href="{% url 'forgot' %}">Forgot password</a>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-white py-1 text-decoration-none" href="{% url 'signup' %}">Créer un compte</a>
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary rounded-pill">Se connecter</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Page d'accueil</title>
+
+  <!-- Vendor CSS Files -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'complaints/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center " style="background-color:rgb(223, 223, 216);">
+    <div class="container d-flex align-items-center justify-content-between ">
+
+      <div class="logo">
+        <h1><a href="{% url 'home' %}">PlaintEase</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'my_plaints' %}">Mes plaintes</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'help' %}">Aide</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+    <li class="nav-item notification-icon">
+      <a class="nav-link" href="#">
+          <i class="bi bi-bell-fill "></i>
+          <span class="badge">{{ number }}</span>
+      </a>
+    </li>
+  <div class="dropdown me-5 ms-4">
+
+    <button class="btn  dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-person-circle "></i>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item text-danger p-1" href="{% url 'logout' %}"><i class="fas fa-power-off px-1"></i>Logout</a></li>
+    </ul>
+  </div>
+  </header>
+<!-- En-tête de la page -->
+    <!-- Section FAQ -->
+    <section class="faq-section">
+      <h2>Questions Fréquemment Posées (FAQ)</h2>
+      <div class="accordion" id="faqAccordion">
+        <!-- Question 1 -->
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Comment puis-je créer un compte ?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Pour créer un compte, renseigner vos informations dans le formulairede creation ' l'acceui puis valider avec le bouton S'inscrire en bas du formulaire.C'est aussi simple, Vous devrez entrer votre adresse e-mail, choisir un mot de passe, et confirmer votre inscription via un e-mail de vérification.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Comment réinitialiser mon mot de passe ?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Pour réinitialiser votre mot de passe, cliquez sur "Mot de passe oublié ?" sur la page de connexion. Suivez les instructions pour recevoir un e-mail avec un lien de réinitialisation.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Comment contacter le support technique ?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Vous pouvez contacter notre support technique en utilisant le formulaire de contact disponible dans la section "Contactez-nous" de notre site en bas de cette page.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="accordion-item mt-3">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Comment déposer une plainte ?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              <p>Pour déposer une plainte, veuillez suivre ces étapes :</p>
+              <ol>
+                <li><strong>Remplir le Formulaire :</strong> Accédez au formulaire de dépôt de plainte sur notre plateforme.</li>
+                <li><strong>Décrire le Problème :</strong> Détaillez la situation ou le problème rencontré en fournissant toutes les informations nécessaires.</li>
+                <li><strong>Soumettre :</strong> Envoyez le formulaire. Vous recevrez une confirmation de réception par e-mail.</li>
+                <li><strong>Suivi :</strong> Notre équipe examinera votre plainte et vous contactera si nécessaire pour des informations complémentaires.</li>
+              </ol>
+              <p>Nous nous engageons à traiter toutes les plaintes avec sérieux et à vous fournir une réponse rapide.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Inclure les fichiers JavaScript de Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!-- Template Main JS File -->
+  <script src="{% static 'complaints/js/main.js' %}"></script>
+
+</body>
+
+</html>
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Page d'accueil</title>
+
+  <!-- Vendor CSS Files -->
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'complaints/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center " style="background-color:rgb(223, 223, 216);">
+    <div class="container d-flex align-items-center justify-content-between ">
+
+      <div class="logo">
+        <h1><a href="{% url 'home' %}">PlaintEase</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'my_plaints' %}">Mes plaintes</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'help' %}">Aide</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+    <li class="nav-item notification-icon">
+      <a class="nav-link" href="#">
+          <i class="bi bi-bell-fill "></i>
+          <span class="badge">{{ number }}</span>
+      </a>
+    </li>
+  <div class="dropdown me-5 ms-4">
+
+    <button class="btn  dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-person-circle "></i>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="fas fa-power-off px-1"></i>Logout</a></li>
+    </ul>
+  </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1 data-aos="fade-up">Bienvenue</h1>
+          <h6 data-aos="fade-up" data-aos-delay="400">Votre espace dédié à la
+            gestion des plaintes de manière efficace et transparente. Nous comprenons que soumettre une plainte peut
+            être une démarche délicate, c'est pourquoi nous avons conçu une plateforme simple et sécurisée pour vous
+            permettre de faire entendre votre voix. Que vous ayez une réclamation ou un souci, notre équipe est là pour
+            vous accompagner à chaque étape du processus, garantissant que votre plainte soit traitée avec le plus grand
+            sérieux.
+          </h6>
+          <div data-aos="fade-up" data-aos-delay="800">
+            <a href="{% url 'let_plaint' %}" class="btn-get-started scrollto">Déposez votre plainte ici</a>
+          </div>
+        </div>
+
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
+          <div class="carousel">
+            <div class="carousel-images">
+              <img src="{% static 'complaints/image/law.jpeg' %}" class="carousel-item active" alt="Image 1">
+              <img src="{% static 'complaints/image/stats-bg.jpg' %}"class="carousel-item" alt="Image 2">
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Clients Section ======= -->
+
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>A propos</h2>
+        </div>
+
+        <div class="row content">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+            <p>
+              [Nom de la Plateforme] a été fondée avec l’objectif de révolutionner la gestion des plaintes en offrant
+              une solution accessible et transparente.
+              Nous croyons fermement en l'importance d'un système où les préoccupations des individus sont traitées avec
+              respect et efficacité.
+            </p>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
+            <p>
+              Notre équipe est composée de professionnels expérimentés qui s'engagent à assurer que chaque plainte est
+              examinée minutieusement et résolue de manière appropriée.
+              Nous sommes déterminés à améliorer continuellement nos services pour répondre aux besoins croissants de
+              nos utilisateurs. </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Counts Section ======= -->
+
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Services</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bi bi-file-earmark-text service-icon"></i></div>
+              <h4 class="title"><a href="{% url 'let_plaint' %}">Soumission de Plaintes en Ligne</a></h4>
+              <p class="description">Remplissez facilement un formulaire en ligne pour soumettre votre plainte avec tous
+                les détails nécessaires.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><i class="bi bi-eye service-icon"></i></div>
+              <h4 class="title"><a href="{% url 'my_plaints' %}">Suivi en Temps Réel </a></h4>
+              <p class="description"> Suivez l’avancement de votre plainte à chaque étape, depuis la réception jusqu’à
+                la résolution.</p>
+            </div>
+          </div>
+
+          
+
+          <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="bi bi-shield-lock"></i></div>
+              <h4 class="title"><a href="">Confidentialité Totale</a></h4>
+              <p class="description"> Nous garantissons que toutes les informations que vous soumettez sont traitées de
+                manière confidentielle.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer " class=" ">
+    <div class="container">
+      <div class="row d-flex align-items-center">
+        <div class="col-lg-12 text-lg-left text-center">
+          <div class="copyright">
+            &copy; Copyright <strong>PlaintEase</strong>. Tous droits reservés
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <!-- Template Main JS File -->
+  <script src="{% static 'complaints/js/main.js' %}"></script>
+
+</body>
+
+</html>
+
+
+
+<div class="row mx-auto my-2 p-2 bg-light rounded">
+    <h4 class="text-center">Description de la plainte</h4>
+    <div class="row rounded p-2">
+        {{ complaint.description }}
+    </div>
+</div>
+
+<div class="row mx-auto my-2 p-2 bg-light rounded">
+    <h4 class="text-center">Statut de la plainte </h4>
+    <p class="text-info text-uppercase">{{ complaint.get_status_display}}</p>
+</div>
+
+<div class="row mx-auto my-2 p-2 bg-light rounded">
+    <h4 class="text-center">Date d'enregistrement de la plainte</h4>
+    <p class="text-info text-uppercase">Il y'a {{ complaint.incident_registered | timesince }}</p>
+</div>
+
+<div class="row mx-auto my-2 p-2 bg-light rounded">
+    <h4 class="text-center">Date de l'incident</h4>
+    <p class="text-info text-uppercase">Soumis en {{ complaint.incident_date | upper }}</p>
+</div>

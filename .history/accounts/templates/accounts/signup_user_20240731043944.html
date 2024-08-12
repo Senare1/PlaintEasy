@@ -1,0 +1,64 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+{% block title %} {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid px-4">
+    <form method="POST" class="mx-auto my-auto">
+        {% csrf_token %}
+        <div class="row my-2">
+            <div class="col">
+                <label for="id_full_name">Nom complet</label>
+            </div>
+            <div class="col">
+                {{ form.full_name }}
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col">
+                <label for="id_phone">Telephone</label>
+            </div>
+            <div class="col">
+                {{ form.phone }}
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col">
+                <label for="id_email">Email </label>
+            </div>
+            <div class="col">
+                {{ form.email }}
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col">
+                <label for="id_status">Statut</label>
+            </div>
+            <div class="col">
+                {{ form.status }}
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col">
+                <label for="id_password1">Mot de passe</label>
+            </div>
+            <div class="col">
+                {{ form.password1 }}
+            </div>
+        </div>
+        <div class="row my-2">
+            <div class="col">
+                <label for="id_password2">Confirmer</label>
+            </div>
+            <div class="col">
+                {{ form.password2 }}
+            </div>
+        </div>
+        <div class="me-2">
+            <button type="submit">Créer</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

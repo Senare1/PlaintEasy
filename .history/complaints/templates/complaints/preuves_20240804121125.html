@@ -1,0 +1,57 @@
+<div class="form-group">
+    <label for="">Vous avez des preuves ?</label>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Ajouter</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Charger46 des preuves</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+              <div class="row mb-3">
+                <div class="col-12 col-md-4 col-lg-4">
+                  <label for="id_image" class="col-form-label">Image:</label>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                  {{form_proof.image}}
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-12 col-md-4 col-lg-4">
+                  <label for="id_video" class="col-form-label">Vidéo:</label>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                  {{form_proof.video}}
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-12 col-md-4 col-lg-4">
+                  <label for="id_audio" class="col-form-label">Audio  :</label>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                  {{form_proof.audio}}
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-12 col-md-4 col-lg-4">
+                  <label for="id_document" class="col-form-label">Document:</label>
+                </div>
+                <div class="col-12 col-md-8 col-lg-8">
+                  {{form_proof.file}}
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-primary">Enregistrer</button>
+          </div>
+        </div>
+      </div>
+    </div>            
+</div>
+<hr>

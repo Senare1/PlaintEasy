@@ -1,0 +1,7 @@
+STATUT = [
+    ('CLIENT','CLIENT'),
+    ('EMPLOYE','EMPLOYE'),
+    ('FOURNISSEUR','FOURNISSEUR'),
+    ('ASSOCIE','ASSOCIE'),
+    ('CITOYEN','CITOYEN'),
+]

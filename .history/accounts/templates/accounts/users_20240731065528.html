@@ -1,0 +1,85 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} ADmin dashboard {% endblock %}
+{% block content %}
+
+<div class="container-fluid px-4">
+    <div class="row g-3 my-2">
+        <div class="col-md-3">
+            <a href="{% url 'receiving' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_total }}</h3>
+                        <p class="fs-5">Mes utilisateurs</p>
+                    </div>
+                    <i class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'treated' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_customer }}</h3>
+                        <p class="fs-5">Mes clients</p>
+                    </div>
+                    <i
+                        class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'running' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_citizen }}</h3>
+                        <p class="fs-5">Mes citoyens</p>
+                    </div>
+                    <i class="fas fa-users fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'signup_user' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">1</h3>
+                        <p class="fs-5">Ajouter</p>
+                    </div>
+                    <i class="fas fa-plus fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <h3 class="fs-4 mb-3">Utilisateurs nouvellement ajoutés</h3>
+        <div class="col">
+            <table class="table bg-white rounded shadow-sm  table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Statut</th>
+                        <th scope="col">Utilisateurs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <th scope="row">{{ user.date }}</th>
+                        <td>{{ user.status }}</td>
+                        <td>{{ user.full_name }}</td>
+                    </tr>
+                    {% endfor %}   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

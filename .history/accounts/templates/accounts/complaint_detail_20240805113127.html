@@ -1,0 +1,170 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} ADmin dashboard {% endblock %}
+{% block content %}
+
+<div class="container-fluid px-4">
+
+    <h1 class="text-center">Detail de la plainte de {{complaint.full_name}}</h1>
+    <div class="row mx-auto my-2 p-2">
+        <h4 class="text-center">Motif de la plainte </h4>
+        <div class="row rounded">
+            {{complaint.motif}}
+        </div>
+    </div>
+    <div class="row mx-auto my-2 p-2">
+        <hr>
+        <h4 class="text-center">Description de la plainte </h4>
+        <div class="row rounded">
+            {{complaint.description}}
+        </div>
+    </div>  
+    <div class="row mx-auto my-2 p-2">
+        <h4 class="text-center">Date d'enregistrement la plainte </h4>
+        <div class="row rounded">
+            {{complaint.incident_registered}}
+        </div>
+    </div>
+    <div class="row mx-auto my-2 p-2">
+        <h4 class="text-center">Date de l'incident </h4>
+        <div class="row rounded">
+            {{complaint.incident_date}}
+        </div>
+    </div>
+    <div class="row py-3">
+        <h4 class="text-center">Preuves de la plainte</h4>
+        {% if images %}
+            <div class="row rounded">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                        {% for element in number_images.count() %}
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ elemnt}}"></li>
+                        {% endfor%}
+                        </ol>
+                        {% for image in images %}
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{image.url}}" alt="{{image.name}}">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Precedent</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Suivant</span>
+                        </a>
+                        {% endfor %}
+                      </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if videos %}
+            <div class="row rounded">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                        {% for element in number_videos.count() %}
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ elemnt}}"></li>
+                        {% endfor%}
+                        </ol>
+                        {% for video in videos %}
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{video.url}}" alt="{{video.name}}">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Precedent</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Suivant</span>
+                        </a>
+                        {% endfor %}
+                      </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if documents %}
+            <div class="row rounded">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                        {% for element in number_documents.count() %}
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ elemnt}}"></li>
+                        {% endfor%}
+                        </ol>
+                        {% for document in documents %}
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{document.url}}" alt="{{document.name}}">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Precedent</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Suivant</span>
+                        </a>
+                        {% endfor %}
+                      </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if audios %}
+            <div class="row rounded">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                        {% for element in number_audios.count() %}
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ elemnt}}"></li>
+                        {% endfor%}
+                        </ol>
+                        {% for audio in audios %}
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{audio.url}}" alt="{{audio.name}}">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Precedent</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Suivant</span>
+                        </a>
+                        {% endfor %}
+                      </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>      
+    <form method="POST">
+        <div class="row">
+            <h3 class="text-center">Donner l'etat de la plainte </h3>
+            <div class="row rounded">
+                <div class="col">
+                    <input type="radio" name="etat" id="treated">
+                    <label for="treated">Plainte traitee </label>
+                </div>
+                <div class="col">
+                    <input type="radio" name="etat" id="running">
+                    <label for="running">Plainte est en cours</label>
+                </div>
+                <div class="col">
+                    <p>Vous n'approuver pas la plainte alors <a href="{% url 'reject' %}" class="btn btn-danger">
+                        Rejecter</a></p>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-success">Valider</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

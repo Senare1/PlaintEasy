@@ -1,0 +1,39 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Les palintes {% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid px-4">
+    <h3 class="text-center">Plaintes reçues</h3>
+{% for complaint in receiving_complaints %}
+<div class="row rounded border shadow-sm bg-white mx-auto my-2">
+<a href="{% url 'complaint_detail' id=complaint.id %}" class="text-decoration-none" style="color: black; font-style: verdanna;font-size: 18px;">
+    <div class="row py-2">
+        <div class="col">
+            {{complaint.motif}}
+        </div>
+        <div class="col">
+            {{complaint.description}}
+        </div>
+        <div class="col">
+            {{complaint.complainant}}
+        </div>
+        <div class="col">
+            {{complaint.get_status_display}}
+        </div>
+    </div>
+</a>
+</div>
+{% empty %}
+<div class="row rounded bg-white mx-auto my-3 w-25 text-success">
+   <p> <i class="bi bi-check-lg fs-1"></i> Waouh ,pas de plaintes reçues</p>
+</div>
+{% endfor %}
+</div>    
+
+
+{% endblock %}

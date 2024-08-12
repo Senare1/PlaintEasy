@@ -1,0 +1,46 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Tous les utilisateurs {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid px-4">
+    <div class="row mb-4">
+        <div class="col-12 text-center mt-4">
+            <h2 class="text-center py-3">Tous les utilisateurs enregistrés</h2>
+        </div>
+    </div>
+    {% for user in users %}
+        <div class="row mb-3 p-3 border rounded shadow-sm align-items-center">
+
+            <div class="col-2">
+                <i class="fas fa-user" style="color: dimgray;"></i>
+            </div>
+
+            <div class="col-8">
+                <a href="{% url 'user_detail' id=user.id %}"  style="color: dimgray;" class="link text-decoration-none">
+                {{ user.full_name | upper}}                
+                </a>
+            </div>
+
+            <div class="col-2 text-center">
+                <a href="{% url 'delete' email=user.email %}"  class="link text-decoration-none text-danger">
+                    <i class="fas fa-trash-alt"></i>                
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+        <div class="row mb-3 p-3 border rounded shadow-sm">
+            {% if not users %}<p class="text-center">Oups, aucun utilisateur enregistré pour le moment</p>{% endif %}            
+            <div class="col-12 text-center">
+                <a href="{% url 'signup_user' %}" class="link text-decoration-none">
+                    <i class="fas fa-plus"></i> Ajouter
+                </a>
+            </div>
+        </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+<style>
+    .custom-tooltip .tooltip-inner {
+    background-color: aquamarine; 
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    padding: 10px; 
+    text-align: center; 
+}
+
+.custom-tooltip .tooltip-arrow {
+    border-top-color: white; 
+}
+
+
+
+</style>
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="text-center">Détail de la plainte de {{ complainant }}</h1>
+    <div class="row mb-3">
+    <div class="col bg-light mx-5 border rounded mt-5 py-3 ">
+        <p class="text-dark" style="color: darkgoldenrod ;font-weight: bolder;">Motif de la plainte</p>
+        <div class="ms-2">{{ complaint.motif }}</div>
+        <p>Soumise le {{ complaint.incident_date }}</p>
+    </div>
+    <div class="col bg-light mx-5 border rounded mt-5 py-3">
+        <p class="text-dark" style="color: darkgoldenrod;font-weight: bolder;">Description de la plainte</p>
+        <div class="ms-3">{{ complaint.description }}</div>
+        <p class="text-dark" style="color: darkgoldenrod;font-weight: bolder;">Etat de la plainte</p>
+        {% if complaint.status == "treated" %}
+        <span class="text-success">{{ complaint.get_status_display }}</span>
+        {% elif complaint.status == "rejected" %}
+            <span class="text-danger">{{ complaint.get_status_display }}</span>
+        {% else %}
+            <span class="text-info">{{ complaint.get_status_display }}</span>
+        {% endif %}
+    </div>
+</div>
+    {% if proofs %}
+    <div class="row  mx-auto py-3 my-3">
+        <h4 class="text-center">Preuves de la plainte</h4>
+            {% for proof in proofs%}
+            {% if proof.image %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mx-3 my-2" style="width: 18rem;">
+                    <div class="card-img-top text-center pt-1">
+                        <i class="fas fa-image fa-5x"></i>
+                    </div>                    
+                    <div class="card-body">
+                      <h5 class="card-title">{{ complaint.motif | truncatewords:3 }}</h5>
+                      <a href="{{ proof.image.url }}" class="btn btn-primary">Ouvrir</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+    
+            {% if proof.video %}
+            <div class="col-12 col-md-6 col-lg-8 ">
+                <div class="card mx-3 my-2" style="width: 18rem;">
+                    <div class="card-img-top text-center pt-1">
+                        <i class="fas fa-video fa-5x"></i>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ complaint.motif | truncatewords:3 }}</h5>
+                      <a href="{{ proof.video.url }}" class="btn btn-primary">Ouvrir</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+    
+            {% if proof.document %}
+            <div class="col ">
+                <div class="card mx-3 my-2" style="width: 18rem;">
+                    <div class="card-img-top text-center pt-1">
+                        <i class="fas fa-file-alt fa-3x"></i>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ complaint.motif | truncatewords:3 }}</h5>
+                      <a href="{{ proof.document.url }}" class="btn btn-primary">Ouvrir</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+    
+            {% if proof.audio %}
+            <div class="col ">
+                <div class="card mx-3 my-2" style="width: 18rem;">
+                    <div class="card-img-top text-center pt-1">
+                        <i class="fas fa-music fa-5xx"></i>
+                    </div>                    
+                    <div class="card-body">
+                      <h5 class="card-title">{{ complaint.motif | truncatewords:3 }}</h5>
+                      <a href="{{ proof.audio.url }}" class="btn btn-primary">Ouvrir</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+    
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    
+
+
+    {% if not proofs %}
+        <div class="row rounded-pill  w-50 w-md-25 w-lg-10 p-3 text-center text-danger bg-light">
+            Pas de preuves fournises
+        </div>
+    {% endif %}
+
+    {% if complaint.status == 'running' %}
+    <form method="POST">
+        {% csrf_token %}
+        <h3 class="text-center">Donner l'état de la plainte</h3>
+            <div class="row mx-auto">
+                <div class="col mx-3 bg-white text-uppercase rounded-pill mx-5 my-2 p-3 w-50 w-md-25 w-lg-10 w-lg-25" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" title="Cocher mettra le statut de la plainte à traité">
+                    <div class="form-check form-switch">
+                        {{ form.status }}
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Traiter la plainte</label>
+                    </div>
+                </div>
+                <div class="col mx-auto p-3 w-50 w-md-25 w-lg-10 w-lg-25 my-2 bg-white text-uppercase rounded-pill" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" title="Cocher mettra le statut de la plainte à rejecter">
+                    <div class="form-check form-switch">
+                        {{ form.reject }}
+                        <label class="form-check-label" for="flexSwitchCheckReject">Vous n'approuvez pas la plainte</label>
+                    </div>
+                </div>
+            </div>
+        <div class="row my-2 justify-content-end">
+            <div class="col-auto me-4">
+                <button type="submit" class="btn btn-success rounded-pill">Valider</button>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+</div>
+<script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+    const formStatus = document.getElementById('flexSwitchCheckDefault');
+    const formReject = document.getElementById('flexSwitchCheckReject');
+
+    formStatus.addEventListener('change', function() {
+        if (this.checked) {
+            formReject.disabled = true;
+        } else {
+            formReject.disabled = false;
+        }
+    });
+
+    formReject.addEventListener('change', function() {
+        if (this.checked) {
+            formStatus.disabled = true;
+        } else {
+            formStatus.disabled = false;
+        }
+    });
+});
+
+</script>
+{% endblock %}

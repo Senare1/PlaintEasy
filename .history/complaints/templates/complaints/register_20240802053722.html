@@ -1,0 +1,76 @@
+{% extends 'complaints/base.html' %}
+
+{% load static %}
+
+{% block title %}Formulaire de plainte {% endblock %}
+
+<div class="container-fluid py-4">
+    <div class="row text-center">
+        <h3 class="text-center py-3">Bienvenue sur ClariSolve</h3>
+    </div>
+    <fieldset class="mx-auto">
+        <legend class="text-center">Formulaire d'une plainte</legend>
+        <form action="" method="POST">
+            <div class="row py-2">
+                <div class="col">
+                    <label for="id_motif">Motif de la plainte</label>
+                </div>
+                <div class="col">
+                    form.motif
+                </div>
+            </div>
+            <div class="row py-2">
+                <div class="col">
+                    <label for="id_motif">Date de l'incident</label>
+                </div>
+                <div class="col">
+                    form.incident_date
+                </div>
+            </div>
+    
+            <div class="col">
+                <label for="id_motif">Description de la plainte</label>
+            </div>
+            <div class="col">
+                form.proof.description
+            </div>
+    
+            <div class="row py-2">
+                <h4 class="text-center">Preuves à l'appui</h4>
+                <div class="row py-2">
+                    <div class="col">
+                        <label for="id_file">En format document</label>
+                    </div>
+                    <div class="col">
+                        form.proof.file
+                    </div>
+                    <div class="col">
+                        <label for="id_image">En format image</label>
+                    </div>
+                    <div class="col">
+                        form.proof.image
+                    </div>
+    
+                    <div class="col">
+                        <label for="id_audio">En format audio</label>
+                    </div>
+                    <div class="col">
+                        form.proof.audio
+                    </div>
+    
+                    <div class="col">
+                        <label for="id_video">En format video</label>
+                    </div>
+                    <div class="col">
+                        form.proof.video
+                    </div>
+                </div>
+            </div>
+            <div class="row me-2 justify-content-end">
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </div>
+        </form>
+    </fieldset>
+</div>
+
+{% endblock }

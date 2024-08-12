@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to ClariSolve</title>
+</head>
+<body>
+    <div class="container mx-auto my-3">
+        <div class="row">
+            <h3 class="text-center">Welcome to ClariSolve</h3>
+            <div class="row">
+                <a href="{% url 'login_email' %}">
+                    <i class="fa fa-mail-send"></i>
+                </a>
+                <a href="{% url 'login_phone' %}">
+                    <i class="fa fa-mail-phone"></i>
+                </a>
+            </div>
+            <div class="row border rounded pill">
+                <div class="col">
+                    {{ form.email }}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

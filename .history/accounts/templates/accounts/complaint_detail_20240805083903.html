@@ -1,0 +1,52 @@
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} ADmin dashboard {% endblock %}
+{% block content %}
+
+<div class="container-fluid px-4">
+
+    <h1 class="text-center">Detail de la plainte de {{complaint.full_name}}</h1>
+    <div class="row mx-auto my-2 p-2">
+        <h4 class="text-center">Motif de la plainte </h4>
+        <div class="row rounded">
+            {{complaint.motif}}
+        </div>
+    </div>
+    <div class="row mx-auto my-2 p-2">
+        <hr>
+        <h4 class="text-center">Description de la plainte </h4>
+        <div class="row rounded">
+            {{complaint.description}}
+        </div>
+    </div>  
+    <div class="row mx-auto my-2 p-2">
+        <h4 class="text-center">Date d'enregistrement la plainte </h4>
+        <div class="row rounded">
+            {{complaint.incident_registered}}
+        </div>
+    </div>
+    <div class="row mx-auto my-2 p-2">
+        <h4 class="text-center">Date de l'incident </h4>
+        <div class="row rounded">
+            {{complaint.incident_date}}
+        </div>
+    </div>
+    <div class="row">
+        <h4 class="text-center">Preuves de la plainte</h4>
+        {% if images %}
+            <div class="row rounded">
+                {% for image in images %}
+                <div class="col rounded">
+                    {{ image}}
+                </div>
+            </div>
+    </div>      
+    <form action=""></form>
+</div>
+{% endblock %}

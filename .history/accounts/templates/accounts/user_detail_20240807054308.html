@@ -1,0 +1,56 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} ADmin dashboard {% endblock %}
+{% block content %}
+
+<div class="ml-5 px-4 rounded bg-white shadow mx-5 py-5 me-5">
+    <div class=" mx-auto g-3 my-2">
+        <div class="row py-3">
+            <h3 class="text-center">Information de {{user.full_name}}</h3>
+        </div>
+        <div class="row mx-auto p-2">
+            <div class="col ml-2">
+                Nom complet :
+            </div>
+            <div class="col justify-content-end me-2">
+                {{user.full_name}}
+            </div>
+        </div>
+        <div class="row mx-auto p-2">
+            <div class="col ml-2">
+                Email :
+            </div>
+            <div class="col justify-content-end me-2">
+                {{user.email}}
+            </div>
+        </div>
+        <div class="row mx-auto p-2">
+            <div class="col ml-2">
+                Telephone :
+            </div>
+            <div class="col justify-content-end me-2">
+                {{user.phone}}
+            </div>
+        </div>
+        <div class="row mx-auto p-2">
+            <div class="col ml-2">
+                Adresse :
+            </div>
+            <div class="col justify-content-end me-2">
+                {% if user.address %}{{user.address}}{% else %} Non fournis {% endif %}
+            </div>
+        </div>
+        <div class="row mx-auto p-2">
+            <div class="col ml-2">
+                Statut :
+            </div>
+            <div class="col justify-content-end me-2">
+                {{user.status}}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

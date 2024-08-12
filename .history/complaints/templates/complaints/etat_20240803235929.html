@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Vesperr Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'appli1/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'appli1/css/bootstrap-icons.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'complaints/css/style.css' %}" rel="stylesheet">
+
+</head>
+<!-- ======= Header ======= -->
+
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center" style="background-color:rgb(223, 223, 216);">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="index.html">PlaintEase</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url 'index' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'etatPlainte' %}">Plaintes</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'historiquePlainte' %}">Historique</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+    <li class="nav-item notification-icon">
+      <a class="nav-link" href="#">
+          <i class="bi bi-bell-fill "></i>
+          <span class="badge">3</span>
+      </a>
+  </li>
+
+  <div class="dropdown me-5 ms-4">
+
+    <button class="btn  dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-person-circle "></i>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Profile</a></li>
+      <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-power-off"></i>Logout</a></li>
+    </ul>
+  </div>
+    <!-- <button type="button" class="btn"><a class="getstarted scrollto" href="">Logout</a></button> -->
+
+  </header><!-- End Header -->
+
+  <main class="main " style="margin-top: 100px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="card">
+            <div class="card-body">
+              <p >Mes plaintes:</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive mt-5 d-lg-overflow-scroll-none">
+        <table class="table table-striped table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>Numéro</th>
+              <th>Description</th>
+              <th>Statut</th>
+              <th>Date de Dépôt</th>
+            </tr>
+          </thead>
+          <tbody id="plaintes-table-body">
+            {% for complaint in complaints %}
+            <tr>
+              <td>1</td>
+              <td>{{ complaint.description }}</td>
+              <td>{{ complaint.statut }}</td>
+              <td>{{ complaint.date_depot }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <p><a href="{% url 'let_plaint' %}">Deposer</a></p>
+            </tr>
+            {% enfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <!---------les scripts js-->
+  <script src="{% static 'Complaints/js/main.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} ADmin dashboard {% endblock %}
+{% block content %}
+
+<div class="container-fluid px-4">
+
+    <h1 class="text-center">Statistiques des plaintes</h1>
+    <canvas id="complaintsChart" width="400" height="200"></canvas>
+    <script>
+        var ctx = document.getElementById('complaintsChart').getContext('2d');
+        var complaintsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Total', 'Traité', 'Rejeté', 'En cours'],
+                datasets: [{
+                    label: 'Nombre de plaintes',
+                    data: [
+                        {{ total_complaints }},
+                        {{ treated_complaints }},
+                        {{ rejected_complaints }},
+                        {{ in_progress_complaints }}
+                    ],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</div>
+{% endblock %}

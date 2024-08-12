@@ -1,0 +1,23 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Les palintes {% endblock %}
+
+{% block content %}
+
+
+<div class="container-fluid px-4">
+{% for complaint in complaints %}
+<div class="row rounded border shadow-sm bg-white">
+<a href="{% url 'complaint_detail' id=complaint.id %}"></a>
+</div>
+{% empty %}
+<div class="row rounded bg-white mx-auto my-3 w-25">
+   <p> <i class="bi bi-check-lg fs-1"></i> Waouh ,pas de plaintes reçues</p>
+</div>
+{% endfor %}
+</div>    
+
+
+{% endblock %}

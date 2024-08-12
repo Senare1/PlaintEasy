@@ -1,0 +1,89 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} ADmin dashboard {% endblock %}
+{% block content %}
+
+<div class="container-fluid px-4">
+    <div class="row g-3 my-2">
+        <div class="col-md-3">
+            <a href="{% url 'receiving' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_total }}</h3>
+                        <p class="fs-5">plaintes</p>
+                    </div>
+                    <i class="fa fa-balance-scale fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'treated' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_treated }}</h3>
+                        <p class="fs-5">traitées</p>
+                    </div>
+                    <i
+                        class="fas fa-check-circle fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'running' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_running }}</h3>
+                        <p class="fs-5">en cours</p>
+                    </div>
+                    <i class="fas fa-spinner fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'rejection' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_rejected }}</h3>
+                        <p class="fs-5">rejetées</p>
+                    </div>
+                    <i class="fas fa-times-circle fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <h3 class="fs-4 mb-3">Plaintes recentes</h3>
+        <div class="col table-responsive d-lg-overflow-scroll-none">
+            <table class="table bg-white rounded shadow-sm  table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Plaignant</th>
+                        <th scope="col">Motif</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in complaints %}
+                        <tr>
+                            <th scope="row">{{ complaint.incident_date }}</th>
+                            <td>{{ complaint.description | truncatewords:3 }}</td>
+                            <td>{{ complaint.complainant }}</td>
+                            <td>{{ complaint.motif }}</td>
+                            <td><p> <a href="{% url 'complaint_detail' id=complaint.id %}" class="btn btn-primary rounded-pill">Voir</a></p></td>
+                        </tr>  
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

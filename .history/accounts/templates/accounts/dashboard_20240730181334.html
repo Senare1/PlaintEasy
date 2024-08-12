@@ -1,0 +1,87 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid px-4">
+    <div class="row g-3 my-2">
+        <div class="col-md-3">
+            <a href="{% url 'receiving' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_total }}</h3>
+                        <p class="fs-5">plaintes</p>
+                    </div>
+                    <i class="fas fa-bell fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'treated' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_treated }}</h3>
+                        <p class="fs-5">traitées</p>
+                    </div>
+                    <i
+                        class="fas fa-check-circle fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'running' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_running }}</h3>
+                        <p class="fs-5">en cours</p>
+                    </div>
+                    <i class="fas fa-spinner fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'rejection' %}" class="text-decoration-none link-div">
+                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                    <div>
+                        <h3 class="fs-2">{{ nb_rejected }}</h3>
+                        <p class="fs-5">rejetées</p>
+                    </div>
+                    <i class="fas fa-times-circle fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <h3 class="fs-4 mb-3">Plaintes recentes</h3>
+        <div class="col">
+            <table class="table bg-white rounded shadow-sm  table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" width="50">Date</th>
+                        <th scope="col">Plaintes</th>
+                        <th scope="col">Plaignant</th>
+                        <th scope="col">Motif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in complaints %}
+                    <tr>
+                        <th scope="row">{{ complaint.date }}</th>
+                        <td>Une diffammation</td>
+                        <td>Jonny</td>
+                        <td>Diffammation</td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

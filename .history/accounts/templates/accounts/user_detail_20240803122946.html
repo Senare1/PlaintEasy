@@ -1,0 +1,35 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} ADmin dashboard {% endblock %}
+{% block content %}
+
+<div class="container-fluid px-4">
+    <div class="row g-3 my-2">
+        <div class="col-md-3">
+            <h3 class="text-center">Information de {{user.full_name}}</h3>
+        </div>
+        <div class="row rounded p-2">
+            <p class="rounded-pill bg-white shadow-sm p-2">Nom complet : {{user.full_name}}</p>            
+        </div>
+        <div class="row rounded">
+            <p class="rounded-pill bg-white shadow-sm p-2">Email : {{user.email}}</p>            
+        </div>
+        <div class="row rounded">
+            <p class="rounded-pill bg-white shadow-sm p-2">Telephone : {{user.phone}}</p>            
+        </div>
+        <div class="row rounded">
+            <div class="col rounded-pill bg-white shadow-sm p-2">
+                Adresse :
+            </div>
+            <div class="col rounded-pill bg-white shadow-sm p-2">
+                {{user.address}}
+            </div>
+        </div>
+        <div class="row rounded">
+            <p class="rounded-pill bg-white shadow-sm p-2">Statut : {{user.status}}</p>            
+        </div>
+    </div>
+</div>
+{% endblock %}

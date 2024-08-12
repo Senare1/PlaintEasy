@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Icon Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <style>
+        .notification-icon {
+            position: relative;
+            display: inline-block;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .notification-icon .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 5px 10px;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="notification-icon">
+        <i class="bi bi-bell"></i>
+        <span class="badge" id="notification-count">5</span>
+    </div>
+
+    <script>
+        // Exemple de mise à jour dynamique du nombre de notifications
+        function updateNotificationCount(count) {
+            document.getElementById('notification-count').innerText = count;
+        }
+
+        // Mise à jour du nombre de notifications (exemple)
+        setTimeout(() => {
+            updateNotificationCount(3);
+        }, 3000);
+    </script>
+</body>
+</html>
